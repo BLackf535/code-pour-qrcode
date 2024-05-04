@@ -7,6 +7,11 @@ $username = "black";
 $password = "black";
 $dbname = "mariage2";
 
+
+// $servername = "localhost";
+// $username = "id22114064_black";
+// $password = "Azerty12345#";
+// $dbname = "id22114064_black";
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Vérifier la connexion
@@ -15,12 +20,12 @@ if ($conn->connect_error) {
 }
 
 // Récupérer les données du formulaire
-$nom = $_POST['nom'];
-$prenom = $_POST['prenom'];
+$nom = strtolower($_POST['nom']);
+$prenom = strtolower($_POST['prenom']);
 $email = $_POST['email'];
 
-// Vérifier si le nom et le prénom existent dans la base de données
-$sql_check_user = "SELECT * FROM personne2 WHERE nom = '$nom' AND prenom = '$prenom'";
+/// Vérifier si le nom et le prénom existent dans la base de données (en ignorant la casse)
+$sql_check_user = "SELECT * FROM personne2 WHERE LOWER(nom) = '$nom' AND LOWER(prenom) = '$prenom'";
 
 $result_check_user = $conn->query($sql_check_user);
 
@@ -48,7 +53,7 @@ if ($result_check_user->num_rows > 0) {
     } else {
         $response = array(
             "success" => false,
-            "message" => "Désolé, votre nom et prénom ne font pas partie des invités de la liste. Veuillez contacter les mariés s'il y a une erreur."
+            "message" => "Vous avez deja confirmer."
         );
     }
 } else {
