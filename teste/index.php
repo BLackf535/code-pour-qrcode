@@ -41,7 +41,8 @@
 
 <div class="container">
     <div class="welcome-message">
-        <h1>Welcome!</h1>
+        <img src="mariage.jpeg" alt="absence de l image" height="5%" while="5%">
+        <h1>Welcome! voulez vous faire partir du mariage de X </h1>
         <button class="btn btn-primary" id="yesBtn">Yes</button>
         <button class="btn btn-secondary" id="noBtn">No</button>
     </div>
@@ -91,7 +92,7 @@
                 type: "POST",
                 data: $(this).serialize(),
                 success: function(response){
-                    if (response.includes("email existe déjà")) {
+                    if (response.includes("email existe déjà désolé")) {
                         // Affiche un SweetAlert avec un logo danger
                         Swal.fire({
                             icon: 'error',
@@ -123,7 +124,7 @@
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
-                        text: 'Something went wrong!'
+                        text: 'Une Erreu sur le formulaire !'
                     });
                 }
             });
