@@ -38,6 +38,7 @@ if ($result_check_user->num_rows > 0) {
     } elseif ($s == 1 && $e == '') {
         $_SESSION['email'] = $email; // Stocker l'email dans la session pour y accéder plus tard
         $_SESSION['nom'] = $nom; // Stocker le nom dans la session pour y accéder plus tard
+        $_SESSION['prenom'] = $prenom; // Stocker le nom dans la session pour y accéder plus tard
         $response = array(
             "success" => true,
             "message" => "Confirmez votre présence.",
@@ -54,7 +55,10 @@ if ($result_check_user->num_rows > 0) {
     // Nom et prénom ne correspondent pas à ceux de la liste des invités
     $response = array(
         "success" => false,
-        "message" => "Désolé, votre nom et prénom ne font pas partie des invités de la liste. Veuillez contacter les mariés s'il y a une erreur."
+        "message" => "Désolé, votre nom et prénom ne font pas partie  de la liste. Mais nous alons vous ajoute sur une liste provisoire.",
+        "email" => $email,
+        "nom" => $nom,
+        "prenom" => $prenom
     );
 }
 

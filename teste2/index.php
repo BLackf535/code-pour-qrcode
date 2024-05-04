@@ -119,11 +119,35 @@ $(document).ready(function(){
                             });
                         }
                     });
+                    
                 } else {
                     Swal.fire({
                         icon: 'error',
                         title: 'Erreur',
-                        text: response.message
+                        text: response.message ,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Oui',
+                        cancelButtonText: 'Non'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $.ajax({
+                                url: 'ajoute.php',
+                                type: 'POST',
+                                data: { 
+                                    email: response.email,
+                                    nom: response.nom,
+                                    prenom: response.prenom 
+                                
+                                },
+                                success: function(updateResponse){
+                                    Swal.fire('Ajout confirmée!', updateResponse.message, 'success');
+                                },
+                                error: function(){
+                                    Swal.fire('Erreur', 'Une erreur est survenue lors de la mise à jour.', 'error');
+                                }
+                            });
+                        }
                     });
                 }
             },
